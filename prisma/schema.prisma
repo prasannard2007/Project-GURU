@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                     String   @id @default(cuid())
+  name                   String?
+  email                  String?  @unique
+  provider               String
+  goal                   String   @default("Become an AI Product Engineer")
+  resumeUrl              String?
+  resumeRaw              String?
+  skills                 Json
+  education              Json
+  experiences            Json
+  projects               Json
+  achievements           Json
+  educationProgress      Int      @default(0)
+  certificationProgress  Int      @default(0)
+  softskillsProgress     Int      @default(0)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}
